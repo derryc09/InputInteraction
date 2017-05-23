@@ -1,0 +1,64 @@
+*{
+    font-family: "Oxygen";
+    box-sizing: border-box;
+}
+body{
+    padding-top: 15%;;
+    text-align: center;
+}
+
+.container{
+    margin: 0 auto;
+    padding: 5px;
+    border: 1px solid black;
+    background: black;
+    width:150px;
+    color:white;
+    text-shadow: none;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently*/
+                                  
+}
+.row1>div, .row2>div, .row3>div{
+    display:inline;
+}
+.keys{
+    width: 100%;
+}
+.keys:hover{
+    background:grey;
+    cursor: pointer;
+    color:white;
+}
+.clear, .shift{
+    margin: 0 auto;
+    width: 100px;
+    color: white;
+    cursor: pointer;
+}
+.clear{
+    background:gray;
+}
+.shift{
+    background:darkgray;
+}
+.clear:hover{
+    background: black;
+}
+.shift:hover{
+    background: black;
+}
+
+.row1, .row2, .row3{
+    display: flex;
+    justify-content: space-between;  
+    border-bottom: solid white 1px;  
+}
+#space{
+    color:purple;
+    font-size: 0.75em;
+}

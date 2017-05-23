@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Oxygen" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Oxygen" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
     <title>Document</title>
 </head>
 <body>
@@ -13,8 +15,8 @@
         <p>Input: <span id="input"></span></p>
     </div>
     <div class="container">
-        <div class="row1">
-            <div class="keys" id="Q">Q</div>
+        <div class="row1" id="row1">
+            <!--<div class="keys" id="Q">Q</div>
             <div class="keys" id="W">W</div>
             <div class="keys" id="E">E</div>
             <div class="keys" id="R">R</div>
@@ -23,10 +25,10 @@
             <div class="keys" id="U">U</div>
             <div class="keys" id="I">I</div>
             <div class="keys" id="O">O</div>
-            <div class="keys" id="P">P</div>
+            <div class="keys" id="P">P</div>-->
         </div>
-        <div class="row2">
-            <div class="keys" id="A">A</div>
+        <div class="row2" id="row2">
+            <!--<div class="keys" id="A">A</div>
             <div class="keys" id="S">S</div>
             <div class="keys" id="D">D</div>
             <div class="keys" id="F">F</div>
@@ -34,108 +36,25 @@
             <div class="keys" id="H">H</div>
             <div class="keys" id="J">J</div>
             <div class="keys" id="K">K</div>
-            <div class="keys" id="L">L</div>
+            <div class="keys" id="L">L</div>-->
         </div>
-        <div class="row3">
-            <div class="keys" id="Z">Z</div>
+        <div class="row3" id="row3">
+            <!--<div class="keys" id="Z">Z</div>
             <div class="keys" id="X">X</div>
             <div class="keys" id="C">C</div>
             <div class="keys" id="V">V</div>
             <div class="keys" id="B">B</div>
             <div class="keys" id="N">N</div>
-            <div class="keys" id="M">M</div>
+            <div class="keys" id="M">M</div>-->
         </div>
     </div>
     <div class="clear" id="clear">Clear</div>
     <div class="shift" id="shift">Shift</div>
     
 </body>
-<style>
-
-    *{
-        font-family: "Oxygen";
-    }
-    body{
-        padding-top: 15%;;
-        text-align: center;
-    }
-    
-    .container{
-        margin: 0 auto;
-        border: 1px solid red;
-        width:150px;
-    }
-    .row1>div, .row2>div, .row3>div{
-        display:inline;
-    }
-    .keys:hover{
-        background:grey;
-        cursor: pointer;
-        color:white;
-    }
-    .clear, .shift{
-        margin: 0 auto;
-        width: 100px;
-        color: white;
-        cursor: pointer;
-    }
-    .clear{
-        background:gray;
-    }
-    .shift{
-        background:darkgray;
-    }
-    .clear:hover{
-        background: black;
-    }
-    .shift:hover{
-        background: black;
-    }
-</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script>
-    var inputArea = document.getElementById("input");
-    var inputKeys = document.getElementsByClassName("keys");
-    var clearKeys = document.getElementById("clear");
-    var upperCase = true;
-
-    Array.from(inputKeys).forEach(function(element) {
-        element.addEventListener('click', type(element.innerHtml));
-    });    
-    
-    $('#clear').click(function(){
-        inputArea.innerText= "";
-    });
-    $('#shift').click(function(){
-        if(upperCase){
-            $(".keys").each(function() {
-                $(this).attr("id",  $(this).attr("id").toLowerCase());
-                $(this).text($(this).attr("id"));
-                upperCase = false; 
-            });
-        } else {
-            $(".keys").each(function() {
-                $(this).attr("id",  $(this).attr("id").toUpperCase());
-                $(this).text($(this).attr("id"));
-                upperCase = true; 
-            });            
-        }
-
-    });    
-        
-    // inputKeys.addEventListener("click", type);
-
-    function type(key){
-        inputArea.innerHtml = "Hello"
-    }
-    $('.keys').click(function(){
-        console.log($(this).attr('id'));
-        inputArea.innerText= inputArea.innerText += $(this).attr('id');
-        var $this = $(this),
-        character = $this.html(); // If it's a lowercase letter, nothing happens to this variable
-        
-    // Code for processing the key.
-    });
-
-</script>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="swipeUpDown.js"></script>
+<script src="main.js"></script>
 </html>
