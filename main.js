@@ -208,13 +208,15 @@ function populateView2(){
 function populateView3(){
     clearView();
     row1 = document.createElement("div");
-    row1.classList = "row1";
+    row1.classList = "row1 symbols";
     row1.id = "row1"; 
     row2 = document.createElement("div");
-    row2.classList = "row2";
+    row2.classList = "row2 symbols";
+    
     row2.id = "row2";     
     row3 = document.createElement("div");
-    row3.classList = "row3";
+    row3.classList = "row3 symbols";
+    
     row3.id = "row3";             
     for(var i = 0; i < symbolRow1.length; i++ ){
         var key = document.createElement("div");
