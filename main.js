@@ -96,10 +96,8 @@ $('#clear').click(function(){
 });
 
 function clearView(){
+    container.innerHTML = "";
 
-    row1.innerHTML = "";
-    row2.innerHTML = "";
-    row3.innerHTML = "";
     
 }
 
@@ -152,6 +150,9 @@ function reassignKeys(){
 
 function populateView1(){
     clearView();
+    row1 = document.createElement("div");
+    row1.classList = "row1";
+    row1.id = "row1";
     for(var i = 0; i < leftRow1.length; i++ ){
         var key = document.createElement("div");
         key.innerHTML= leftRow1[i];
@@ -159,6 +160,10 @@ function populateView1(){
         key.id = leftRow1[i];
         row1.appendChild(key);
     };
+
+    row2 = document.createElement("div");
+    row2.classList = "row2";
+    row2.id = "row2";    
     for(var i = 0; i < leftRow2.length; i++ ){
         var key = document.createElement("div");
         key.innerHTML= leftRow2[i];
@@ -166,6 +171,9 @@ function populateView1(){
         key.id = leftRow2[i];
         row2.appendChild(key);
     };
+
+    container.appendChild(row1);
+    container.appendChild(row2);
     reassignKeys();
               
 }
@@ -173,6 +181,12 @@ function populateView1(){
 
 function populateView2(){
     clearView();
+    row1 = document.createElement("div");
+    row1.classList = "row1";
+    row1.id = "row1"; 
+    row2 = document.createElement("div");
+    row2.classList = "row2";
+    row2.id = "row2";        
     for(var i = 0; i < rightRow1.length; i++ ){
         var key = document.createElement("div");
         key.innerHTML= rightRow1[i];
@@ -187,10 +201,21 @@ function populateView2(){
         key.id = rightRow2[i];
         row2.appendChild(key);
     };
+    container.appendChild(row1);
+    container.appendChild(row2);    
     reassignKeys();        
 }
 function populateView3(){
     clearView();
+    row1 = document.createElement("div");
+    row1.classList = "row1";
+    row1.id = "row1"; 
+    row2 = document.createElement("div");
+    row2.classList = "row2";
+    row2.id = "row2";     
+    row3 = document.createElement("div");
+    row3.classList = "row3";
+    row3.id = "row3";             
     for(var i = 0; i < symbolRow1.length; i++ ){
         var key = document.createElement("div");
         key.innerHTML= symbolRow1[i];
@@ -212,7 +237,18 @@ function populateView3(){
         key.id = symbolRow3[i];
         row3.appendChild(key);
     };
+    container.appendChild(row1);
+    container.appendChild(row2);    
+    container.appendChild(row3);        
+        
     reassignKeys();             
+}
+
+function populateTextInput(){
+    clearView();
+    var inputView = document.createElement("div");
+    inputView.innerText = inputArea.innerText;
+    container.appendChild(inputView);
 }
 
 
@@ -249,7 +285,7 @@ $(".container").on("swiperight",function(){
     
 });  
 $(".container").on("swipeleft",function(){
-    if(currentView < 3){
+    if(currentView < 3 && currentView > 0){
         currentView ++;
         toggleView()
     } 
@@ -258,7 +294,13 @@ $(".container").on("swipeleft",function(){
 });                         
 $(".container").on("swipedown",function(){
     console.log("swiped down");
+    currentView = -currentView;
+    
+    toggleView();
+
 });  
 $(".container").on("swipeup",function(){
     console.log("swiped up");
+    currentView = -currentView;
+    populateTextInput();
 });     

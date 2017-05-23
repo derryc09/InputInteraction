@@ -1,6 +1,12 @@
 *{
     font-family: "Oxygen";
     box-sizing: border-box;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently*/    
 }
 body{
     padding-top: 15%;;
@@ -8,19 +14,19 @@ body{
 }
 
 .container{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    
     margin: 0 auto;
-    padding: 5px;
     border: 1px solid black;
     background: black;
     width:150px;
     color:white;
     text-shadow: none;
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently*/
+    min-height: 65px;
+    max-height: 65px;        
                                   
 }
 .row1>div, .row2>div, .row3>div{

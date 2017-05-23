@@ -61,6 +61,7 @@ $.each({
     $.event.special[event] = {
         setup: function(){
             $(this).bind(sourceEvent, $.noop);
+            console.log("swiping up and down");
         }
     };
 });
