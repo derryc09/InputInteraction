@@ -294,13 +294,19 @@ $(".container").on("swipeleft",function(){
 });                         
 $(".container").on("swipedown",function(){
     console.log("swiped down");
-    currentView = -currentView;
-    
+    if(currentView <= 0){
+        currentView = -currentView;
+
+    }
+
     toggleView();
 
 });  
 $(".container").on("swipeup",function(){
     console.log("swiped up");
-    currentView = -currentView;
+    if(currentView >= 0){
+        currentView = -currentView;
+
+    }
     populateTextInput();
 });     
