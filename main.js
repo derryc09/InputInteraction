@@ -279,18 +279,24 @@ function toggleView(){
 
 
 $(".container").on("swiperight",function(){
-    if(currentView > 1){
+    if(currentView == 1){
+        currentView = 3;
+    } else if(currentView > 1){
         currentView --;
-        toggleView()
     } 
+    toggleView();
+    
     console.log("swiped right");
     
 });  
 $(".container").on("swipeleft",function(){
-    if(currentView < 3 && currentView > 0){
+    if(currentView == 3){
+        currentView = 1;
+    }else if(currentView < 3 && currentView > 0){
         currentView ++;
-        toggleView()
     } 
+    toggleView()
+    
     console.log("swiped left");
     
 });                         
