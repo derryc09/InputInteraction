@@ -79,11 +79,13 @@ var symbolRow2 = [
     "\""
 ];
 var symbolRow3 = [
+    "space",
     ".",
     ",",
     "?",
     "1",
-    "'"
+    "'",
+    "<"
 ]
 
 
