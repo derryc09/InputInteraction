@@ -200,7 +200,7 @@ function reassignKeys(){
             console.log($(this).attr('id'));
             inputArea.innerText= inputArea.innerText.substring(0,inputArea.innerText.length-1);
         } else {
-            if(trialCount > 4){
+            if(trialCount < 44){
                 cell1.innerText = $(this).attr('id');
                 cell2.innerText = $(this).attr('id').charCodeAt(0);
                 newRow.appendChild(cell1);
