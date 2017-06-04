@@ -218,9 +218,12 @@ function reassignKeys(){
         if(inputArea.innerText.replace(/\s/g /* all kinds of spaces*/,
          " ").toLowerCase() === words[trialCount].replace(/\s/g /* all kinds of spaces*/,
          " ").toLowerCase()){
-
-            trialCount++;
-            displayText.innerText = words[trialCount];
+            if(trialCount < 44){
+                trialCount++;
+                displayText.innerText = words[trialCount];
+            } else {
+                displayText.innerText = "THE END. Thank you for your time. Derry says hi."
+            }
             inputArea.innerText = "";
         }
         var $this = $(this),
