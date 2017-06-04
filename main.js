@@ -12,8 +12,6 @@ var upperCase = true;
 var currentView = 1;
 var trialCount = 0;
 var words = [
-    "a aa",
-    "eee",
     "my watch fell in the water",
     "prevailing wind from the east",
     "never too rich and never too thin",
@@ -202,12 +200,14 @@ function reassignKeys(){
             console.log($(this).attr('id'));
             inputArea.innerText= inputArea.innerText.substring(0,inputArea.innerText.length-1);
         } else {
-            cell1.innerText = $(this).attr('id');
-            cell2.innerText = $(this).attr('id').charCodeAt(0);
-            newRow.appendChild(cell1);
-            newRow.appendChild(cell2);
-            newRow.appendChild(cell3);
-            asciiBody.appendChild(newRow);            
+            if(trialCount > 4){
+                cell1.innerText = $(this).attr('id');
+                cell2.innerText = $(this).attr('id').charCodeAt(0);
+                newRow.appendChild(cell1);
+                newRow.appendChild(cell2);
+                newRow.appendChild(cell3);
+                asciiBody.appendChild(newRow);    
+            }
             inputArea.innerText= inputArea.innerText += $(this).attr('id');
         }
 

@@ -75,3 +75,10 @@ th{
 .symbols{
     font-size: 0.80em;
 }
+#displayArea{
+    padding-top:80px;
+    font-size: 20px;
+}
+.inputArea{
+    font-size: 20px;
+}
