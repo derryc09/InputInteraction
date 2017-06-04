@@ -12,6 +12,9 @@ body{
     padding-top: 15%;;
     text-align: center;
 }
+th{
+    text-align: center;
+}
 
 .container{
     padding-top: 10px;

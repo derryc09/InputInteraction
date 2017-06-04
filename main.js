@@ -5,9 +5,63 @@ var clearKeys = document.getElementById("clear");
 var row1 = document.getElementById("row1");
 var row2 = document.getElementById("row2");
 var row3 = document.getElementById("row3");
+var displayText = document.getElementById("displayArea");
 var container = document.getElementById("container");
+var asciiBody = document.getElementById("asciiBody");
 var upperCase = true;
 var currentView = 1;
+var trialCount = 0;
+var words = [
+    "a aa",
+    "eee",
+    "my watch fell in the water",
+    "prevailing wind from the east",
+    "never too rich and never too thin",
+    "breathing is difficult",
+    "I can see the rings on Saturn",
+    "physics and chemistry are hard",
+    "my bank account is overdrawn",
+    "elections bring out the best",
+    "we are having spaghetti",
+    "time to go shopping",
+    "a problem with the engine",
+    "elephants are afraid of mice",
+    "my favorite place to visit",
+    "three two one zero blast off",
+    "my favorite subject is psychology",
+    "circumstances are unacceptable",
+    "watch out for low flying objects",
+    "if at first you do not succeed",
+    "please provide your date of birth",
+    "we run the risk of failure",
+    "prayer in schools offends some",
+    "he is just like everyone else",
+    "great disturbance in the force",
+    "love means many things",
+    "you must be getting old",
+    "the world is a stage",
+    "can I skate with sister today",
+    "neither a borrower nor a lender be",
+    "one heck of a question",
+    "question that must be answered",
+    "beware the ides of March",
+    "double double toil and trouble",
+    "the power of denial",
+    "I agree with you",
+    "play it again Sam",
+    "the force is with you",
+    "you are not a jedi yet",
+    "an offer you cannot refuse",
+    "are you talking to me",
+    "yes you are very smart",
+    "all work and no play",
+    "hair gel is very greasy",
+    "Valium in the economy size",
+    "the facts get in the way",
+    "the dreamers of dreams"
+];
+displayText.innerHTML = words[trialCount];
+
 
 var leftRow1 = [
     ".",
@@ -128,11 +182,19 @@ function type(key){
 
 
 function reassignKeys(){
-    inputKeys = document.getElementsByClassName("keys");        
+    inputKeys = document.getElementsByClassName("keys");
     Array.from(inputKeys).forEach(function(element) {
         element.addEventListener('click', type(element.innerHtml));
     });
     $('.keys').click(function(){
+        var newRow = document.createElement("tr");
+        var cell1 = document.createElement("td");
+        var cell2 = document.createElement("td");
+        var cell3 = document.createElement("td");
+
+        var now = Date.now();
+        cell3.innerText = now;
+
         if($(this).attr('id') == "space"){
             console.log($(this).attr('id'));
             inputArea.innerText= inputArea.innerText += '\u00a0';
@@ -140,7 +202,26 @@ function reassignKeys(){
             console.log($(this).attr('id'));
             inputArea.innerText= inputArea.innerText.substring(0,inputArea.innerText.length-1);
         } else {
+            cell1.innerText = $(this).attr('id');
+            cell2.innerText = $(this).attr('id').charCodeAt(0);
+            newRow.appendChild(cell1);
+            newRow.appendChild(cell2);
+            newRow.appendChild(cell3);
+            asciiBody.appendChild(newRow);            
             inputArea.innerText= inputArea.innerText += $(this).attr('id');
+        }
+
+
+
+
+
+        if(inputArea.innerText.replace(/\s/g /* all kinds of spaces*/,
+         " ").toLowerCase() === words[trialCount].replace(/\s/g /* all kinds of spaces*/,
+         " ").toLowerCase()){
+
+            trialCount++;
+            displayText.innerText = words[trialCount];
+            inputArea.innerText = "";
         }
         var $this = $(this),
         character = $this.html(); // If it's a lowercase letter, nothing happens to this variable
@@ -320,3 +401,8 @@ $(".container").on("swipeup",function(){
     }
     populateTextInput();
 });     
+
+var button = document.getElementById("button");
+$("#button").on("click",function(){
+    $("#asciiTable").tableExport({type:'xml',escape:'false'});
+});
