@@ -224,6 +224,7 @@ function reassignKeys(){
             } else {
                 displayText.innerText = "THE END. Thank you for your time. Derry says hi."
             }
+
             inputArea.innerText = "";
         }
         var $this = $(this),
