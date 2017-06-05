@@ -217,7 +217,7 @@ function reassignKeys(){
 
         if(inputArea.innerText.replace(/\s/g /* all kinds of spaces*/,
          " ").toLowerCase() === words[trialCount].replace(/\s/g /* all kinds of spaces*/,
-         " ").toLowerCase()){
+         " ").toLowerCase() && tiralCount < 44){
 
             trialCount++;
             displayText.innerText = words[trialCount];
