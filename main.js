@@ -232,7 +232,7 @@ function reassignKeys(){
             asciiBody.appendChild(newRow);
             inputArea.innerText= inputArea.innerText.substring(0,inputArea.innerText.length-1);
         } else {
-            if(trialCount <= 3){
+            if(trialCount <= 44){
                 cell1.innerText = $(this).attr('id').toLowerCase();
                 cell2.innerText = $(this).attr('id').toLowerCase().charCodeAt(0);
                 newRow.appendChild(cell1);
@@ -268,7 +268,7 @@ function reassignKeys(){
             newRow.appendChild(cell1);
             asciiBody.appendChild(newRow);    
 
-            if(trialCount < 3){
+            if(trialCount < 44){
                 
                 trialCount++;
                 displayText.innerText = words[trialCount];
