@@ -12,54 +12,72 @@ var upperCase = true;
 var currentView = 1;
 var trialCount = 0;
 var words = [
-    "my watch fell in the water",
-    "prevailing wind from the east",
-    "never too rich and never too thin",
-    "breathing is difficult",
-    "I can see the rings on Saturn",
-    "physics and chemistry are hard",
-    "my bank account is overdrawn",
-    "elections bring out the best",
-    "we are having spaghetti",
-    "time to go shopping",
-    "a problem with the engine",
-    "elephants are afraid of mice",
-    "my favorite place to visit",
-    "three two one zero blast off",
-    "my favorite subject is psychology",
-    "circumstances are unacceptable",
-    "watch out for low flying objects",
-    "if at first you do not succeed",
-    "please provide your date of birth",
-    "we run the risk of failure",
-    "prayer in schools offends some",
-    "he is just like everyone else",
-    "great disturbance in the force",
-    "love means many things",
-    "you must be getting old",
-    "the world is a stage",
-    "can I skate with sister today",
-    "neither a borrower nor a lender be",
-    "one heck of a question",
-    "question that must be answered",
-    "beware the ides of March",
-    "double double toil and trouble",
-    "the power of denial",
-    "I agree with you",
-    "play it again Sam",
-    "the force is with you",
-    "you are not a jedi yet",
-    "an offer you cannot refuse",
-    "are you talking to me",
-    "yes you are very smart",
-    "all work and no play",
-    "hair gel is very greasy",
-    "Valium in the economy size",
-    "the facts get in the way",
-    "the dreamers of dreams"
+    "aaa eee",
+    "eee",
+    "iii",
+    "ooo"
+    // "my watch fell in the water",
+    // "prevailing wind from the east",
+    // "never too rich and never too thin",
+    // "breathing is difficult",
+    // "I can see the rings on Saturn",
+    // "physics and chemistry are hard",
+    // "my bank account is overdrawn",
+    // "elections bring out the best",
+    // "we are having spaghetti",
+    // "time to go shopping",
+    // "a problem with the engine",
+    // "elephants are afraid of mice",
+    // "my favorite place to visit",
+    // "three two one zero blast off",
+    // "my favorite subject is psychology",
+    // "circumstances are unacceptable",
+    // "watch out for low flying objects",
+    // "if at first you do not succeed",
+    // "please provide your date of birth",
+    // "we run the risk of failure",
+    // "prayer in schools offends some",
+    // "he is just like everyone else",
+    // "great disturbance in the force",
+    // "love means many things",
+    // "you must be getting old",
+    // "the world is a stage",
+    // "can I skate with sister today",
+    // "neither a borrower nor a lender be",
+    // "one heck of a question",
+    // "question that must be answered",
+    // "beware the ides of March",
+    // "double double toil and trouble",
+    // "the power of denial",
+    // "I agree with you",
+    // "play it again Sam",
+    // "the force is with you",
+    // "you are not a jedi yet",
+    // "an offer you cannot refuse",
+    // "are you talking to me",
+    // "yes you are very smart",
+    // "all work and no play",
+    // "hair gel is very greasy",
+    // "Valium in the economy size",
+    // "the facts get in the way",
+    // "the dreamers of dreams"
 ];
-displayText.innerHTML = words[trialCount];
 
+displayText.innerHTML = words[trialCount];
+var newRow = document.createElement("tr");
+var cell1 = document.createElement("td");
+cell1.innerText = "Trial"
+newRow.appendChild(cell1);
+asciiBody.appendChild(newRow);    
+
+var newRow = document.createElement("tr");
+var cell1 = document.createElement("td");
+var cell2 = document.createElement("td");
+cell1.innerText = "Presented"
+cell2.innerText = words[trialCount];
+newRow.appendChild(cell1);
+newRow.appendChild(cell2);
+asciiBody.appendChild(newRow);    
 
 var leftRow1 = [
     ".",
@@ -200,9 +218,9 @@ function reassignKeys(){
             console.log($(this).attr('id'));
             inputArea.innerText= inputArea.innerText.substring(0,inputArea.innerText.length-1);
         } else {
-            if(trialCount < 44){
-                cell1.innerText = $(this).attr('id');
-                cell2.innerText = $(this).attr('id').charCodeAt(0);
+            if(trialCount <= 3){
+                cell1.innerText = $(this).attr('id').toLowerCase();
+                cell2.innerText = $(this).attr('id').toLowerCase().charCodeAt(0);
                 newRow.appendChild(cell1);
                 newRow.appendChild(cell2);
                 newRow.appendChild(cell3);
@@ -218,9 +236,43 @@ function reassignKeys(){
         if(inputArea.innerText.replace(/\s/g /* all kinds of spaces*/,
          " ").toLowerCase() === words[trialCount].replace(/\s/g /* all kinds of spaces*/,
          " ").toLowerCase()){
-            if(trialCount < 44){
+
+            var newRow = document.createElement("tr");
+            var cell1 = document.createElement("td");
+            var cell2 = document.createElement("td");
+            cell1.innerText = "Transcribed"
+            cell2.innerText = inputArea.innerText.replace(/\s/g /* all kinds of spaces*/,
+         " ").toLowerCase();
+            newRow.appendChild(cell1);
+            newRow.appendChild(cell2);
+            asciiBody.appendChild(newRow);   
+
+
+            var newRow = document.createElement("tr");
+            var cell1 = document.createElement("td");
+            cell1.innerText = "EndTrial"
+            newRow.appendChild(cell1);
+            asciiBody.appendChild(newRow);    
+
+            if(trialCount < 3){
+                
                 trialCount++;
                 displayText.innerText = words[trialCount];
+                var newRow = document.createElement("tr");
+                var cell1 = document.createElement("td");
+                cell1.innerText = "Trial"
+                newRow.appendChild(cell1);
+                asciiBody.appendChild(newRow);   
+
+                var newRow = document.createElement("tr");
+                var cell1 = document.createElement("td");
+                var cell2 = document.createElement("td");
+                cell1.innerText = "Presented"
+                cell2.innerText = words[trialCount];
+                newRow.appendChild(cell1);
+                newRow.appendChild(cell2);
+                asciiBody.appendChild(newRow);   
+
             } else {
                 displayText.innerText = "THE END. Thank you for your time. Derry says hi."
             }

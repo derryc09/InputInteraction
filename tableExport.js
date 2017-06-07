@@ -166,39 +166,93 @@ THE SOFTWARE.*/
 					var base64data = "base64," + $.base64.encode(JSON.stringify(jsonExportArray));
 					window.open('data:application/json;filename=exportData;' + base64data);
 				}else if(defaults.type == 'xml'){
-				
-					var xml = '<?xml version="1.0" encoding="utf-8"?>';
-					xml += '<tabledata><fields>';
+					
+					var xml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>	';
+					xml += '<TextTest>';
 
 					// Header
-					$(el).find('thead').find('tr').each(function() {
-						$(this).filter(':visible').find('th').each(function(index,data) {
-							if ($(this).css('display') != 'none'){					
-								if(defaults.ignoreColumn.indexOf(index) == -1){
-									xml += "<field>" + parseString($(this)) + "</field>";
-								}
-							}
-						});									
-					});					
-					xml += '</fields><data>';
+					// $(el).find('thead').find('tr').each(function() {
+					// 	$(this).filter(':visible').find('th').each(function(index,data) {
+					// 		if ($(this).css('display') != 'none'){					
+					// 			if(defaults.ignoreColumn.indexOf(index) == -1){
+					// 				xml += "<field>" + parseString($(this)) + "</field>";
+					// 			}
+					// 		}
+					// 	});									
+					// });					
+					// xml += '</fields>';
 					
 					// Row Vs Column
-					var rowCount=1;
+					var trialCount=0;
 					$(el).find('tbody').find('tr').each(function() {
-						xml += '<row id="'+rowCount+'">';
+						// xml += '<row id="'+rowCount+'">';
+						var char;
+						var value;
+						var ticks;
 						var colCount=0;
+						var isTrial = false;
+						var isPresented = false;
+						var presentedText = "";
+						var isTrialEnd = false;
+						var isTranscribed = false;
 						$(this).filter(':visible').find('td').each(function(index,data) {
+							if( parseString($(this)) == "Trial"){
+								isTrial = true;
+								trialCount++;
+								xml += '<Trial number="'+trialCount + '" testing="true"> ';	
+								console.log("trial");	
+								console.log(trialCount);
+							} else if (parseString($(this)) == "EndTrial"){
+								isTrial = false;
+								isTrialEnd = true;
+								console.log("isTrial End");
+					
+							} else if (parseString($(this)) == "Presented"){
+								isPresented = true;
+								console.log("is Presented");
+							} else if (parseString($(this)) == "Transcribed"){
+								isTranscribed = true;
+								console.log("is Transcribed");
+							}
 							if ($(this).css('display') != 'none'){	
 								if(defaults.ignoreColumn.indexOf(index) == -1){
-									xml += "<column-"+colCount+">"+parseString($(this))+"</column-"+colCount+">";
+									if(colCount == 0){
+										char = parseString($(this));
+									} else if (colCount == 1){
+										if(isPresented){
+											presentedText = parseString($(this));
+											console.log(presentedText);
+										} else if(isTranscribed){
+											transcribedText = parseString($(this));
+											console.log(transcribedText);
+										}
+										value = parseString($(this));
+									} else if (colCount == 2){
+										ticks = parseString($(this));
+									}
+									// xml += "<column-"+colCount+">"+parseString($(this))+"</column-"+colCount+">";
 								}
+								colCount++;
+								
 							}
-							colCount++;
-						});															
+						});
+						
+						// console.log(xml);
+						if(!isTrial && !isTrialEnd & !isPresented && !isTranscribed){
+							xml += '<Entry char="'+char + '" value="'+ value  + '" ticks="'+ ticks + '" seconds="'+ ticks/1000 +  '" /> ';															
+							isTrial = false;
+						} else if (isTrialEnd){
+							console.log("isTrial End");
+							// console.log(xml);
+							xml += '</Trial> ';	
+						} else if (isPresented){
+							xml += '<Presented>' + presentedText + '</Presented>' ;	
+						} else if (isTranscribed){
+							xml += '<Transcribed>' + transcribedText + '</Transcribed>' ;	
+						}
 						rowCount++;
-						xml += '</row>';
 					});					
-					xml += '</data></tabledata>'
+					xml += '</TextTest>'
 					
 					if(defaults.consoleLog == 'true'){
 						console.log(xml);
