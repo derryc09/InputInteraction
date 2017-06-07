@@ -12,10 +12,13 @@ var upperCase = true;
 var currentView = 1;
 var trialCount = 0;
 var words = [
-    "aaa eee",
+    "aaa",
     "eee",
     "iii",
-    "ooo"
+    "ooo",
+    "uuu",
+    "aaa",
+    "eee"
     // "my watch fell in the water",
     // "prevailing wind from the east",
     // "never too rich and never too thin",
@@ -66,8 +69,11 @@ var words = [
 displayText.innerHTML = words[trialCount];
 var newRow = document.createElement("tr");
 var cell1 = document.createElement("td");
+var cell2 = document.createElement("td");
 cell1.innerText = "Trial"
+cell2.innerText = words[trialCount].length;
 newRow.appendChild(cell1);
+newRow.appendChild(cell2);
 asciiBody.appendChild(newRow);    
 
 var newRow = document.createElement("tr");
@@ -260,9 +266,12 @@ function reassignKeys(){
                 displayText.innerText = words[trialCount];
                 var newRow = document.createElement("tr");
                 var cell1 = document.createElement("td");
+                var cell2 = document.createElement("td");
                 cell1.innerText = "Trial"
+                cell2.innerText = words[trialCount].length;
                 newRow.appendChild(cell1);
-                asciiBody.appendChild(newRow);   
+                newRow.appendChild(cell2);
+                asciiBody.appendChild(newRow);     
 
                 var newRow = document.createElement("tr");
                 var cell1 = document.createElement("td");
