@@ -195,15 +195,15 @@ THE SOFTWARE.*/
 						var presentedText = "";
 						var isTrialEnd = false;
 						var isTranscribed = false;
+						var presentLength;
 						$(this).filter(':visible').find('td').each(function(index,data) {
 							if( parseString($(this)) == "Trial"){
 								isTrial = true;
 								trialCount++;
-								xml += '<Trial number="'+trialCount + '" testing="true"> ';	
+								// xml += '<Trial number="'+trialCount + '" testing="true"> ';	
 								console.log("trial");	
 								console.log(trialCount);
 							} else if (parseString($(this)) == "EndTrial"){
-								isTrial = false;
 								isTrialEnd = true;
 								console.log("isTrial End");
 					
@@ -225,6 +225,8 @@ THE SOFTWARE.*/
 										} else if(isTranscribed){
 											transcribedText = parseString($(this));
 											console.log(transcribedText);
+										} else if (isTrial){
+											presentLength = parseString($(this));
 										}
 										value = parseString($(this));
 									} else if (colCount == 2){
@@ -239,8 +241,14 @@ THE SOFTWARE.*/
 						
 						// console.log(xml);
 						if(!isTrial && !isTrialEnd & !isPresented && !isTranscribed){
-							xml += '<Entry char="'+char + '" value="'+ value  + '" ticks="'+ ticks + '" seconds="'+ ticks/1000 +  '" /> ';															
+							xml += '<Entry char="'+char + '" value="'+ value  + '" ticks="'+ ticks + '" seconds="'+ ticks/100 +  '" /> ';															
 							isTrial = false;
+						} else if (isTrial){
+							if(trialCount <= 5){
+								xml += '<Trial number="'+trialCount + '" testing="true"' + ' entries= "'+presentLength + '"> ';	
+							} else {
+								xml += '<Trial number="'+trialCount + '" testing="false"' + ' entries= "'+presentLength + '"> ';	
+							}
 						} else if (isTrialEnd){
 							console.log("isTrial End");
 							// console.log(xml);
