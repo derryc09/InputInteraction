@@ -220,8 +220,23 @@ function reassignKeys(){
         if($(this).attr('id') == "space"){
             console.log($(this).attr('id'));
             inputArea.innerText= inputArea.innerText += '\u00a0';
+
+            cell1.innerText = " ";
+            cell2.innerText = " ".charCodeAt(0);
+            newRow.appendChild(cell1);
+            newRow.appendChild(cell2);
+            newRow.appendChild(cell3);
+            asciiBody.appendChild(newRow);
         } else if($(this).attr('id') == "<"){
             console.log($(this).attr('id'));
+
+            
+            cell1.innerText = 'backspace';
+            cell2.innerText = 8;
+            newRow.appendChild(cell1);
+            newRow.appendChild(cell2);
+            newRow.appendChild(cell3);
+            asciiBody.appendChild(newRow);
             inputArea.innerText= inputArea.innerText.substring(0,inputArea.innerText.length-1);
         } else {
             if(trialCount <= 3){
