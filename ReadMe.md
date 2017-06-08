@@ -1,4 +1,4 @@
-How to use Split Board
+How to use SlideSwipe
 
 SwipeLeft/SwipeRight: Navigate between keyboards
 SwipeUp: View inputted words
